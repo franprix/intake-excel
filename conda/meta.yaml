@@ -1,0 +1,38 @@
+package:
+  name: intake-excel
+  version: 0.1
+
+source:
+  path: ..
+
+build:
+  number: 1
+  script:
+    - python setup.py install --single-version-externally-managed --record=record.txt
+  noarch: python
+
+requirements:
+  build:
+    - python
+    - jinja2
+  run:
+    - intake>=0.3
+    - python
+    - pandas
+    - dask
+
+#test:
+#  source_files:
+#    - tests
+#  requires:
+#    - pytest
+#    - pytest-cov
+#    - coverage
+#  commands:
+#    - py.test --verbose --cov=intake_excel tests
+
+about:
+  home: https://github.com/franprix/intake-excel
+  license: MIT
+  license_file: LICENSE
+  summary: Intake Excel plugin
