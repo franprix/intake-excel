@@ -21,15 +21,15 @@ requirements:
     - pandas
     - dask
 
-#test:
-#  source_files:
-#    - tests
-#  requires:
-#    - pytest
-#    - pytest-cov
-#    - coverage
-#  commands:
-#    - py.test --verbose --cov=intake_excel tests
+test:
+  source_files:
+    - tests
+  requires:
+    - pytest
+    - pytest-cov
+    - coverage
+  commands:
+    - py.test --verbose --cov=intake_excel tests
 
 about:
   home: https://github.com/franprix/intake-excel
