@@ -1,3 +1,5 @@
+import pandas as pd
+
 import intake
 from intake_excel import ExcelSource
 

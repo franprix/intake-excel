@@ -1,3 +1,6 @@
+# package specific: ignore temporary *.xlsx
+*.xlsx
+
 # VSCode
 .vscode/*
 .vscode/settings.json
