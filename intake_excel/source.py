@@ -85,7 +85,6 @@ class ExcelSource(base.DataSource):
         ctx.verify_mode = ssl.CERT_NON
 
         resp = urlopen(urlpath, context=ctx)
-E
         zipfile = ZipFile(BytesIO(resp.read()))
 
         lst = list()
