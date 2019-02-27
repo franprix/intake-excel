@@ -1,3 +1,4 @@
 intake
 pandas
 openpyxl
+xlrd 
