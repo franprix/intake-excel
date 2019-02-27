@@ -18,15 +18,9 @@ class ExcelSource(base.DataSource):
         urlpath : str or iterable, location of data
             May be a local path, or remote path if including a protocol specifier
             such as ``'s3://'``. May include glob wildcards or format pattern strings.
-            Some examples:
-
-            - ``{{ CATALOG_DIR }}data/precipitation.xls``
-            - ``s3://data/*.xls``
-            - ``s3://data/precipitation_{state}_{zip}.xls``
-            - ``s3://data/{year}/{month}/{day}/precipitation.xls``
-            - ``{{ CATALOG_DIR }}data/precipitation_{date:%Y-%m-%d}.xls``
         compression_method : str
-            Either 'plain', 'zip' or 'gzip'
+            Either 'zip' or 'gzip' if data is compressed. At the moment Excel files
+            in zipped archives are concatenated in a single dataframe.
         excel_kwargs : dict
             Any further arguments to pass to pandas read_excel
         """
