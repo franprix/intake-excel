@@ -43,9 +43,9 @@ class ExcelSource(base.DataSource):
         import pandas as pd
 
         if self._compression_method == 'zip':
-            df = self._read_zip(urlpath)
+            self._dataframe = self._read_zip(urlpath)
         elif self._compression_method == 'gzip':
-            df = self._read_gzip(urlpath)
+            self._dataframe = self._read_gzip(urlpath)
         else:
             self._dataframe = pd.read_excel(urlpath, **self._excel_kwargs)
 
