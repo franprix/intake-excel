@@ -21,4 +21,9 @@ setup(
     install_requires=requires,
     long_description=open('README.md').read(),
     zip_safe=False,
+    entry_points={
+        'intake.drivers': [
+            'excel=intake_excel.source:ExcelSource',
+        ]
+    },
 )

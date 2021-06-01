@@ -1,4 +1,5 @@
 from intake.source import base
+from dask.bytes import open_files
 
 class ExcelSource(base.DataSource):
     """Read Excel files into dataframes
@@ -36,12 +37,14 @@ class ExcelSource(base.DataSource):
         """
         import pandas as pd
 
-        if self._compression_method == 'zip':
+        if self._compression_method in ('gzip', 'zlib', 'bz2'):
+            self._dataframe = self._read_single_compressed(urlpath)
+        elif self._compression_method == 'zip':
             self._dataframe = self._read_zip(urlpath)
-        elif self._compression_method == 'gzip':
-            self._dataframe = self._read_gzip(urlpath)
-        else:
+        elif self._compression_method == None:
             self._dataframe = pd.read_excel(urlpath, **self._excel_kwargs)
+        else:
+            raise KeyError("Unsupported compression method {}".format(self._compression_method))
 
     def _get_schema(self):
         urlpath = self._get_cache(self.urlpath)[0]
@@ -93,10 +96,9 @@ class ExcelSource(base.DataSource):
         return df
 
     def _read_gzip(self, urlpath):
-        import gzip
-        from io import StringIO, BytesIO
-        from urllib.request import urlopen
         import pandas as pd
+
+        #files = open_files(urlpath, compression=)
 
         resp = urlopen(urlpath)
         gzipfile = gzip.open(BytesIO(resp.read()))
