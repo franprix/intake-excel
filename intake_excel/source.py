@@ -1,5 +1,4 @@
 from intake.source import base
-from dask.bytes import open_files
 
 class ExcelSource(base.DataSource):
     """Read Excel files into dataframes
@@ -97,8 +96,6 @@ class ExcelSource(base.DataSource):
 
     def _read_gzip(self, urlpath):
         import pandas as pd
-
-        #files = open_files(urlpath, compression=)
 
         resp = urlopen(urlpath)
         gzipfile = gzip.open(BytesIO(resp.read()))
